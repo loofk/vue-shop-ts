@@ -1,0 +1,119 @@
+image {
+  will-change: transform;
+}
+
+/* ··················· 二级导航 ··················· */
+.goods-nav {
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  padding: 0 32%;
+  color: #999;
+  font-size: 28upx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  .nav-item-wrapper {
+    height: 44px;
+    line-height: 44px;
+    padding: 0 15upx;
+  }
+
+  .nav-item {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-bottom: 4upx solid transparent;
+
+    &.hover {
+      color: $e-lightRed;
+      border-bottom-color: $e-lightRed;
+    }
+  }
+}
+
+// 分享按钮
+.p-share-btn {
+  border: none;
+  background-color: transparent;
+  display: inline-block;
+  padding: 10upx;
+  line-height: inherit;
+}
+
+// 商品简介
+.p-goods-brief {
+  line-height: 1.5;
+  color: #999;
+  margin: 10upx auto 20upx;
+  max-height: 76upx;
+  overflow: hidden;
+}
+
+// 图文
+.p-detail-img {
+  display: block;
+  width: 100%;
+}
+
+// 参数
+.p-detail-parameters {
+  position: relative;
+  height: 450upx;
+  overflow: hidden;
+}
+
+// 查看更多
+.read-more {
+  width: 100%;
+  height: 80upx;
+  justify-content: center;
+  background: #fff;
+  color: $e-lightRed;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+/* ··················· sku弹框申请人列表 ··················· */
+.ap-box {
+  position: relative;
+  padding-bottom: 0 !important;
+  margin-top: 16upx;
+  line-height: 1.4rem;
+  font-size: 30upx;
+  input {
+    width: 280upx;
+  }
+
+  .pp-type {
+    font-size: 30upx;
+    color: $e-9;
+  }
+
+  .ap-list {
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 340upx;
+    height: 100%;
+    // background-color: $e-f;
+    text-align: right;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    z-index: 2;
+  }
+
+  .ap-item {
+    // border: 1upx solid $e-line;
+    // border-radius: 3px;
+    color: #576b95;
+    // height: inherit;
+    // vertical-align: middle;
+  }
+}

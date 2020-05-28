@@ -1,0 +1,697 @@
+/*
+ * init
+ * 样式初始化
+ *
+ * ··················· init ··················· */
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+  line-height: 1.4;
+  color: $e-3;
+  font-size: 26rpx;
+  font-family: -apple-systee-font, microsoft yahei;
+  background-color: $e-lightGray;
+}
+img {
+  border: none;
+  max-width: 100%;
+  display: block;
+}
+// 固定页面，禁止滚动
+.scroll {
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+ * Common component
+ * 以下是公共组件样式
+ *
+ * ··················· 布局 ··················· */
+// 自动换行
+.e-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// 自动占满余量
+.e-flex_auto {
+  flex: 1;
+  overflow: hidden;
+}
+
+.e-flex_2 {
+  flex: 2;
+  overflow: hidden;
+}
+
+.e-flex_3 {
+  flex: 3;
+  overflow: hidden;
+}
+
+// 上下居中
+.e-flex_center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// 上对齐
+.e-flex_up {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+// 下对齐
+.e-flex_down {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+// 左对齐
+.e-flex_left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+// 右对齐
+.e-flex_right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+// 弹性布局
+.e-box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// 全屏白色背景
+.e-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background: $e-f;
+  &.fixed {
+    position: fixed;
+    z-index: 9;
+  }
+}
+
+/* ··················· 文字属性 ··················· */
+.e-indent {
+  text-indent: 2em;
+}
+.e-preWrap {
+  white-space: pre-wrap;
+}
+.e-txtC {
+  text-align: center;
+}
+.e-txtR {
+  text-align: right;
+}
+.e-txtL {
+  text-align: left;
+}
+.e-vertM {
+  vertical-align: middle;
+}
+// 兼容ios文字两端对齐， 无效原因不明
+.e-align-justify {
+  text-align: justify;
+  &::after {
+    display: inline-block;
+    content: " ";
+    width: 100%;
+  }
+}
+.e-bold {
+  font-weight: bold;
+}
+.e-font20 {
+  font-size: 20rpx;
+}
+.e-font22 {
+  font-size: 22rpx;
+}
+.e-font24 {
+  font-size: 24rpx;
+}
+.e-font28 {
+  font-size: 28rpx;
+}
+.e-font30 {
+  font-size: 30rpx;
+}
+.e-font32 {
+  font-size: 32rpx;
+}
+.e-font36 {
+  font-size: 36rpx;
+}
+.e-font40 {
+  font-size: 40rpx;
+}
+.e-font42 {
+  font-size: 42rpx;
+}
+.e-font44 {
+  font-size: 44rpx;
+}
+
+/* ··················· 颜色 ··················· */
+.e-red {
+  color: $e-red;
+}
+.e-blue {
+  color: $e-blue;
+}
+.e-green {
+  color: $e-green;
+}
+.e-yellow {
+  color: $e-yellow;
+}
+.e-deepRed {
+  color: $e-deepRed;
+}
+.e-lightRed {
+  color: $e-lightRed;
+}
+.e-brownRed {
+  color: $e-brownRed;
+}
+.e-blackGold {
+  color: $e-blackGold;
+}
+.e-c3 {
+  color: $e-3;
+}
+.e-c6 {
+  color: $e-6;
+}
+.e-c9 {
+  color: $e-9;
+}
+.e-cf {
+  color: $e-f;
+}
+.e-bgGray {
+  background: $e-gray;
+}
+.e-bgLightGray {
+  background: $e-lightGray;
+}
+.e-bgWhite {
+  background: $e-f;
+}
+
+/* ··················· 边距 ··················· */
+.e-pr10 {
+  padding-right: 10rpx;
+}
+.e-pd20 {
+  padding: 20rpx;
+}
+.e-pl20 {
+  padding-left: 20rpx;
+}
+.e-pr20 {
+  padding-right: 20rpx;
+}
+.e-pb20 {
+  padding-bottom: 20rpx;
+}
+.e-pt20 {
+  padding-top: 20rpx;
+}
+.e-pl30 {
+  padding-left: 30rpx;
+}
+.e-pr30 {
+  padding-right: 30rpx;
+}
+.e-pt30 {
+  padding-top: 30rpx;
+}
+.e-pb30 {
+  padding-bottom: 30rpx;
+}
+.e-pb108 {
+  padding-bottom: 108rpx;
+  // 适配iphoneX等全面屏机型 hack
+  // #ifdef MP-WEIXIN
+  padding-bottom: calc(constant(safe-area-inset-bottom) + 108rpx);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 108rpx);
+  // #endif
+}
+.e-mt10 {
+  margin-top: 10rpx;
+}
+.e-ml10 {
+  margin-left: 10rpx;
+}
+.e-mr10 {
+  margin-right: 10rpx;
+}
+.e-mb0 {
+  margin-bottom: 0 !important;
+}
+.e-mb10 {
+  margin-bottom: 10rpx;
+}
+.e-mt20 {
+  margin-top: 20rpx;
+}
+.e-ml20 {
+  margin-left: 20rpx;
+}
+.e-mr20 {
+  margin-right: 20rpx;
+}
+.e-mb20 {
+  margin-bottom: 20rpx;
+}
+.e-ml26 {
+  margin-left: 26rpx;
+}
+.e-mt30 {
+  margin-top: 30rpx;
+}
+.e-mb30 {
+  margin-bottom: 30rpx;
+}
+.e-ml30 {
+  margin-left: 30rpx;
+}
+.e-mr30 {
+  margin-right: 30rpx;
+}
+.e-mt50 {
+  margin-top: 50rpx;
+}
+.e-mb50 {
+  margin-bottom: 50rpx;
+}
+
+/* ··················· 字间距 ··················· */
+.e-lp1 {
+  letter-spacing: -1px;
+}
+
+/* ··················· 行距 ··················· */
+.e-lh1 {
+  line-height: 1;
+}
+.e-lh_half {
+  line-height: 1.5;
+}
+.e-lh2 {
+  line-height: 2;
+}
+.e-lh3 {
+  line-height: 3;
+}
+.e-lh4 {
+  line-height: 4;
+}
+
+/* ··················· btn ··················· */
+.e-btn {
+  display: inline-block;
+  box-sizing: border-box;
+  height: 85rpx;
+  line-height: 85rpx;
+  border: 1rpx solid transparent;
+  font-size: 30rpx;
+  border-radius: 42.5rpx;
+  text-align: center;
+}
+// 黄色按钮
+.e-btnOrangeBg {
+  background-color: $e-orange;
+  color: $e-f;
+}
+// 深红按钮
+.e-btnRedBg {
+  background-image: linear-gradient(90deg, #f1170d 0%, #f2410d 100%), linear-gradient($e-deepRed, $e-deepRed);
+  color: $e-f;
+}
+.e-btnRedBorder {
+  border-color: $e-deepRed;
+  background: $e-f;
+  color: $e-deepRed;
+}
+// 黑金按钮
+.e-btnBlackGoldBg {
+  background-image: linear-gradient(90deg, #f1e6c6 0%, #dcc38d 100%), linear-gradient($e-deepRed, $e-deepRed);
+  color: $e-blackGold;
+}
+.e-btnBlackGoldBorder {
+  border-color: $e-blackGold;
+  background: $e-f;
+  color: $e-blackGold;
+}
+// 灰色不可选按钮
+.e-grayBg {
+  background: $e-e;
+  color: #9a9a9a;
+}
+.e-grayBorder {
+  background: $e-f;
+  border-color: #d2d2d2;
+  color: #999;
+}
+
+// 悬浮阴影按钮
+.white-shadow-btn {
+  box-sizing: border-box;
+  width: 80rpx;
+  height: 80rpx;
+  padding: 10rpx;
+  border-radius: 50%;
+  background: $e-f;
+  box-shadow: 0 0 10rpx $e-lightRed;
+  text-align: center;
+  color: $e-9;
+  font-size: 18rpx;
+
+  .icon {
+    color: $e-3;
+    font-size: 60rpx;
+  }
+
+  &.has-text .icon {
+    font-size: 44rpx;
+    height: 38rpx;
+    margin-top: -2rpx;
+  }
+
+  &.no-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// 按钮长度
+.e-s-Btn {
+  width: 150rpx;
+  height: 63rpx;
+  padding: 0 14rpx;
+  line-height: 63rpx;
+  font-size: 26rpx;
+  letter-spacing: -1px;
+}
+.e-m-Btn {
+  width: 228rpx;
+}
+.e-l-Btn {
+  width: 336rpx;
+}
+
+/* ··················· 缩略 ··················· */
+.e-omit1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+.e-omit2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ··················· 1px border ··················· */
+// border-top
+.e-b-top {
+  background-image: linear-gradient(0deg, $e-line 60%, transparent 40%), linear-gradient(90deg, transparent, transparent), linear-gradient(180deg, transparent, transparent),
+    linear-gradient(270deg, transparent, transparent);
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+  background-size: 100% 1px, 0, 0, 0;
+}
+.e-b-bottom {
+  background-image: linear-gradient(0deg, transparent, transparent), linear-gradient(90deg, transparent, transparent), linear-gradient(180deg, $e-line 60%, transparent 40%),
+    linear-gradient(270deg, transparent, transparent);
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+  background-size: 0, 0, 100% 1px, 0;
+}
+.e-b-bottom-red {
+  background-image: linear-gradient(0deg, transparent, transparent), linear-gradient(90deg, transparent, transparent), linear-gradient(180deg, $e-lightRed 60%, transparent 40%),
+    linear-gradient(270deg, transparent, transparent);
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+  background-size: 0, 0, 100% 1px, 0;
+}
+.e-b-left {
+  background-image: linear-gradient(0deg, transparent, transparent), linear-gradient(90deg, transparent, transparent), linear-gradient(180deg, transparent, transparent),
+    linear-gradient(270deg, $e-line 60%, transparent 40%);
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+  background-size: 0, 0, 0, 1px 100%;
+}
+.e-b-rb {
+  padding: 1px;
+  background-image: linear-gradient(0deg, transparent, transparent), linear-gradient(90deg, $e-line 60%, transparent 40%), linear-gradient(180deg, $e-line 60%, transparent 40%),
+    linear-gradient(270deg, transparent, transparent);
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+  background-size: 0, 1px 100%, 100% 1px, 0;
+}
+.e-b {
+  padding: 1px;
+  background-image: linear-gradient(0deg, $e-line 60%, transparent 40%), linear-gradient(90deg, $e-line 60%, transparent 40%), linear-gradient(180deg, $e-line 60%, transparent 40%),
+    linear-gradient(270deg, $e-line 60%, transparent 40%);
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+  background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
+  &.on {
+    background-image: linear-gradient(0deg, $e-red 60%, transparent 40%), linear-gradient(90deg, $e-red 60%, transparent 40%), linear-gradient(180deg, $e-red 60%, transparent 40%),
+      linear-gradient(270deg, $e-red 60%, transparent 40%);
+    color: $e-red;
+  }
+}
+
+/* ··················· 产品相关 ··················· */
+// 价格
+.e-price {
+  font-size: 28rpx;
+  &.m {
+    font-size: 30rpx;
+  }
+  &.l {
+    font-size: 36rpx;
+  }
+  &::before {
+    content: "￥";
+    font-size: 24rpx;
+  }
+}
+
+// 带阴影边框
+.e-box_p {
+  width: auto;
+  margin: 30rpx;
+  padding: 35rpx 28rpx;
+  background: $e-f;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 10rpx 14rpx 1rpx rgba(0, 0, 0, 0.03);
+}
+.e-box_f {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 30rpx 26rpx;
+  background: $e-f;
+}
+
+// 加减控件
+.e-number-count {
+  .count-op {
+    display: inline-block;
+    width: 60rpx;
+    height: 50rpx;
+    line-height: 1;
+    text-align: center;
+    font-size: 43rpx;
+    color: #939393;
+    background: $e-gray;
+    border-radius: 5rpx;
+    &.disable {
+      color: #ddd;
+    }
+  }
+  .count-number {
+    display: inline-block;
+    width: 80rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    color: $e-3;
+  }
+}
+
+/* ··················· 遮罩 ··················· */
+// 默认 不带动效
+.e-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 110;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+// 带动效
+.e-mask_fade {
+  transition: opacity 0.3s;
+  z-index: -1;
+  opacity: 0;
+}
+
+// 带动效 显示
+.e-mask_show {
+  z-index: 110;
+  opacity: 1;
+}
+
+/* ··················· 定制居中弹框 ··················· */
+.p-popup {
+  box-sizing: border-box;
+  width: 570rpx;
+  padding: 35rpx 40rpx;
+  .e-btn {
+    font-size: 26rpx;
+    width: 230rpx;
+    height: 65rpx;
+    line-height: 60rpx;
+    padding: 0 !important;
+  }
+}
+
+/* ··················· 定位 ··················· */
+.e-relative {
+  position: relative;
+}
+.e-absolute {
+  position: absolute;
+}
+
+// 盒子宽高不定 上下居中
+.e-fixed_mid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.e-fixed_top {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// 固定底部
+.e-fixed_bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  margin: 0 auto;
+}
+// 底部按钮栏
+.e-bottom-btnGroup {
+  height: 85rpx;
+  background-color: #fff;
+  padding: 12rpx 28rpx;
+  // #ifdef MP-WEIXIN
+  padding-bottom: calc(constant(safe-area-inset-bottom) + 12rpx);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 12rpx);
+  // #endif
+}
+
+/* ··················· 浮动 ··················· */
+.e-hide {
+  display: none;
+}
+.e-block {
+  display: block;
+}
+.e-iblock {
+  display: inline-block;
+}
+.e-hidden {
+  overflow: hidden;
+}
+
+/* ··················· 地址列表 ··················· */
+.e-addr {
+  padding: 20rpx 30rpx;
+  background-color: $e-f;
+  line-height: 1.8;
+}
+.e-addr_left {
+  width: 20%;
+  height: 100%;
+  margin-right: 10rpx;
+}
+.e-addr_bottom {
+  width: 100%;
+  text-align: right;
+}
+
+/* ··················· 表单验证 ··················· */
+.e-form {
+  display: block;
+  font-size: 28rpx;
+  width: auto;
+  margin: 30rpx;
+  padding: 0 28rpx;
+  background: $e-f;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 10rpx 14rpx 1rpx rgba(0, 0, 0, 0.03);
+
+  .e-form-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30rpx 0;
+  }
+}
+
+/* ··················· 分割线 ··················· */
+.e-gap-line {
+  width: 100%;
+  height: 1rpx;
+  background: $e-line;
+  margin: 35rpx 0;
+}
+
+/* ··················· 阴影 ··················· */
+.e-shadow-default {
+  box-shadow: 0rpx 10rpx 14rpx 1rpx rgba(0, 0, 0, 0.03);
+}
+
+/* ··················· 圆角 ··················· */
+.e-border-radius-10 {
+  border-radius: 10rpx;
+}

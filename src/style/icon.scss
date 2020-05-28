@@ -1,0 +1,115 @@
+/*
+ * iconfont
+ * 直接引用类名
+ *
+ * ··················· iconfont ··················· */
+@font-face {
+  font-family: "eshopfont";
+  src: url("../assets/font/eshopfont.ttf") format("truetype");
+}
+.icon {
+  line-height: 1;
+  font-size: 52upx;
+  vertical-align: unset;
+  &::before,
+  &::after {
+    line-height: 1;
+    font-family: "eshopfont";
+    font-style: normal;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+.icon-home::before {
+  content: "\e681";
+} // √
+
+.icon-left::before {
+  content: "\e67f";
+} // √
+
+.icon-right::before {
+  content: "\e690";
+} // √
+
+.icon-up::before {
+  content: "\e68d";
+} // √
+
+.icon-down::before {
+  content: "\e689";
+} // √
+
+.icon-close::before {
+  content: "\e67b";
+} // √
+
+.icon-location::before {
+  content: "\e67d";
+} // √
+
+.icon-info::before {
+  content: "\e68a";
+} // √
+
+.icon-unpay::before {
+  content: "\e691";
+} // √
+
+.icon-undeliver::before {
+  content: "\e686";
+} // √
+
+.icon-deliver::before {
+  content: "\e682";
+} // √
+
+.icon-complete::before {
+  content: "\e688";
+} // √
+
+.icon-cancel::before {
+  content: "\e68c";
+} // √
+
+.icon-logistics::before {
+  content: "\e683";
+} // √
+
+.icon-share::before {
+  content: "\e684";
+} // √
+
+.icon-customer::before {
+  content: "\e67e";
+} // √
+
+.icon-trangle::before {
+  content: "\e692";
+} // √
+
+.icon-cart::before {
+  content: "\e680";
+} // √
+
+.icon-upload::before {
+  content: "\e687";
+} // √
+
+.icon-add::before {
+  content: "\e68e";
+} // √
+
+.icon-minus::before {
+  content: "\e68f";
+} // √
+
+.icon-up-arrow::before {
+  content: "\e693";
+} // √
+
+.icon-down-arrow::before {
+  content: "\e685";
+}
+
+/* ··················· ico ··················· */

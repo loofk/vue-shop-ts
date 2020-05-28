@@ -1,0 +1,28 @@
+/*
+ * 重置默认样式
+ */
+
+/* #ifdef MP-WEIXIN */
+
+// 去除按钮自带边框
+button::after {
+  border: none;
+}
+
+// 修改checkbox样式
+checkbox.roundCheckBox .wx-checkbox-input {
+  border-radius: 50%;
+}
+checkbox.roundCheckBox .wx-checkbox-input.wx-checkbox-input-checked {
+  border-color: transparent;
+  background: $e-deepRed;
+}
+checkbox.roundCheckBox .wx-checkbox-input.wx-checkbox-input-disabled {
+  border-color: transparent;
+  background: #d2d2d2;
+}
+checkbox.roundCheckBox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  color: #fff;
+  font-size: 34upx;
+}
+/* #endif */
