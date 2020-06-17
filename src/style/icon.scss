@@ -8,8 +8,7 @@
   src: url("../assets/font/eshopfont.ttf") format("truetype");
 }
 .icon {
-  line-height: 1;
-  font-size: 52upx;
+  font-size: 26px;
   vertical-align: unset;
   &::before,
   &::after {
@@ -52,7 +51,7 @@
   content: "\e68a";
 } // √
 
-.icon-unpay::before {
+.icon-unpaid::before {
   content: "\e691";
 } // √
 
@@ -60,15 +59,15 @@
   content: "\e686";
 } // √
 
-.icon-deliver::before {
+.icon-delivered::before {
   content: "\e682";
 } // √
 
-.icon-complete::before {
+.icon-completed::before {
   content: "\e688";
 } // √
 
-.icon-cancel::before {
+.icon-canceled::before {
   content: "\e68c";
 } // √
 
@@ -112,4 +111,50 @@
   content: "\e685";
 }
 
+.icon-search::before {
+  content: "\e67c";
+} // √
+
+.icon-empty-circle::before {
+  content: "\e600";
+}
+
+.icon-check::before {
+  content: "\e77d";
+}
+
+.icon-checked::before {
+  content: "\e844";
+}
+
 /* ··················· ico ··················· */
+.ico-lu3 {
+  width: 50px;
+  height: 70px;
+  background: url('~@/assets/image/lu3.png') 0 0 / 100% no-repeat;
+
+  &.sad {
+    background-position: 0 -70px;
+  }
+}
+
+.ico-state {
+  width: 130px;
+  background: url('~@/assets/image/state.png') 0 0 / 100% no-repeat;
+
+  &.cart {
+    height: 86px;
+    background-position: 0 -278px;
+  }
+
+  &.cate {
+    height: 83.5px;
+    background-position: 0 -450px;
+  }
+
+  &.order {
+    height: 85px;
+    background-position: 0 -365px;
+  }
+}
+

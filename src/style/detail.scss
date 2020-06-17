@@ -27,48 +27,78 @@ image {
     height: 100%;
     border-bottom: 4upx solid transparent;
 
-    &.hover {
+    &.active {
       color: $e-lightRed;
       border-bottom-color: $e-lightRed;
     }
   }
 }
 
-// 分享按钮
-.p-share-btn {
-  border: none;
-  background-color: transparent;
-  display: inline-block;
-  padding: 10upx;
-  line-height: inherit;
+/* ··················· 商品基本信息 ··················· */
+.p-info {
+  .brief {
+    margin: 5px auto 10px;
+    color: $e-9;
+  }
 }
 
-// 商品简介
-.p-goods-brief {
-  line-height: 1.5;
-  color: #999;
-  margin: 10upx auto 20upx;
-  max-height: 76upx;
-  overflow: hidden;
-}
+.p-sku {
+  padding: 10px 14px;
 
-// 图文
-.p-detail-img {
-  display: block;
-  width: 100%;
+  .e-gap-line {
+    margin: 5px;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 36px;
+  }
+
+  .choose {
+    flex: 1;
+    margin-left: 15px;
+    color: $e-3;
+  }
 }
 
 // 参数
-.p-detail-parameters {
+.p-params {
   position: relative;
-  height: 450upx;
+  height: 225px;
   overflow: hidden;
+
+  .title {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .sub-title {
+    margin-top: 15px;
+    padding-left: 10px;
+    font-weight: bold;
+  }
+
+  .content {
+    display: flex;
+    padding: 10px;
+
+    .name {
+      flex: 1;
+      color: $e-9;
+    }
+
+    .value {
+      flex: 3;
+    }
+  }
 }
 
 // 查看更多
 .read-more {
   width: 100%;
-  height: 80upx;
+  height: 40px;
   justify-content: center;
   background: #fff;
   color: $e-lightRed;
@@ -76,44 +106,4 @@ image {
   left: 0;
   bottom: 0;
   z-index: 10;
-}
-
-/* ··················· sku弹框申请人列表 ··················· */
-.ap-box {
-  position: relative;
-  padding-bottom: 0 !important;
-  margin-top: 16upx;
-  line-height: 1.4rem;
-  font-size: 30upx;
-  input {
-    width: 280upx;
-  }
-
-  .pp-type {
-    font-size: 30upx;
-    color: $e-9;
-  }
-
-  .ap-list {
-    position: absolute;
-    right: 0;
-    top: 0;
-    max-width: 340upx;
-    height: 100%;
-    // background-color: $e-f;
-    text-align: right;
-    white-space: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    z-index: 2;
-  }
-
-  .ap-item {
-    // border: 1upx solid $e-line;
-    // border-radius: 3px;
-    color: #576b95;
-    // height: inherit;
-    // vertical-align: middle;
-  }
 }

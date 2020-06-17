@@ -2,27 +2,23 @@
  * 重置默认样式
  */
 
-/* #ifdef MP-WEIXIN */
-
-// 去除按钮自带边框
-button::after {
-  border: none;
+a {
+  text-decoration: none;
+  color: unset;
 }
 
-// 修改checkbox样式
-checkbox.roundCheckBox .wx-checkbox-input {
-  border-radius: 50%;
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
 }
-checkbox.roundCheckBox .wx-checkbox-input.wx-checkbox-input-checked {
-  border-color: transparent;
-  background: $e-deepRed;
+
+button {
+  display: inline-block;
+  box-sizing: border-box;
+  height: 40px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  text-align: center;
+  outline: none;
 }
-checkbox.roundCheckBox .wx-checkbox-input.wx-checkbox-input-disabled {
-  border-color: transparent;
-  background: #d2d2d2;
-}
-checkbox.roundCheckBox .wx-checkbox-input.wx-checkbox-input-checked::before {
-  color: #fff;
-  font-size: 34upx;
-}
-/* #endif */

@@ -3,7 +3,10 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import { to } from '@/util/request/to'
+import { to, loading, toast, Nav } from '@/util'
+
+// 适配rem
+import 'amfe-flexible'
 
 // 导入mint-ui框架
 import MintUI from 'mint-ui'
@@ -18,7 +21,10 @@ import './style/reset.scss'
 import './components/index'
 
 Vue.prototype.$to = to
-Vue.prototype.$toast = MintUI.Toast
+Vue.prototype.$loading = loading
+Vue.prototype.$toast = toast
+Vue.prototype.$modal = MintUI.MessageBox
+Vue.prototype.$nav = new Nav()
 
 Vue.config.productionTip = false
 

@@ -7,6 +7,11 @@ Vue.use(VueRouter)
 let routes: RouteConfig[] = [
   {
     name: 'index',
+    path: '/index',
+    component: home
+  },
+  {
+    name: 'index',
     path: '/',
     component: home
   }

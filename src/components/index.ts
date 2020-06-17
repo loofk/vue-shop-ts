@@ -1,12 +1,11 @@
 /**
- * 自动注册global文件夹下的组件到全局
+ * 自动注册global文件夹下的组件到全局，使用时必须首字母大写
  */
 
 import Vue from 'vue'
 
-const componentsContext = require.context('./global', true, /\.{js,vue,ts}$/)
+const componentsContext = require.context('./global', true, /\.vue$/)
 
-// tslint:disable-next-line:arrow-parens
 componentsContext.keys().forEach(component => {
   const componentConfig = componentsContext(component)
 

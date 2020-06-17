@@ -1,28 +1,40 @@
+@import './normalize.css';
+@import './minireset.css';
+
 /*
  * init
  * 样式初始化
  *
  * ··················· init ··················· */
-* {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
 body {
-  line-height: 1.4;
   color: $e-3;
-  font-size: 26rpx;
+  font-size: 14px !important;
   font-family: -apple-systee-font, microsoft yahei;
   background-color: $e-lightGray;
 }
-img {
-  border: none;
-  max-width: 100%;
-  display: block;
-}
-// 固定页面，禁止滚动
-.scroll {
-  box-sizing: border-box;
+
+/* ··················· 滚动 ··················· */
+.scroll-page {
   height: 100vh;
-  overflow: auto;
+
+// 自定义全局高
+&.without-nav {
+  padding-top: 44px;
+}
+
+&.without-tabbar {
+  padding-bottom: 55px;
+}
+
+&.without-tabbar-and-nav {
+  padding-top: 44px;
+  padding-bottom: 55px;
+}
+}
+
+.scroll-view {
+  height: 100%;
+  overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -40,16 +52,6 @@ img {
 // 自动占满余量
 .e-flex_auto {
   flex: 1;
-  overflow: hidden;
-}
-
-.e-flex_2 {
-  flex: 2;
-  overflow: hidden;
-}
-
-.e-flex_3 {
-  flex: 3;
   overflow: hidden;
 }
 
@@ -90,8 +92,6 @@ img {
 
 // 弹性布局
 .e-box {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -104,6 +104,7 @@ img {
   bottom: 0;
   margin: auto;
   background: $e-f;
+
   &.fixed {
     position: fixed;
     z-index: 9;
@@ -141,35 +142,32 @@ img {
 .e-bold {
   font-weight: bold;
 }
+.e-font12 {
+  font-size: 12px;
+}
+.e-font13 {
+  font-size: 13px;
+}
+.e-font14 {
+  font-size: 14px;
+}
+.e-font15 {
+  font-size: 15px;
+}
+.e-font16 {
+  font-size: 16px;
+}
+.e-font18 {
+  font-size: 18px;
+}
 .e-font20 {
-  font-size: 20rpx;
+  font-size: 20px;
 }
 .e-font22 {
-  font-size: 22rpx;
+  font-size: 22px;
 }
 .e-font24 {
-  font-size: 24rpx;
-}
-.e-font28 {
-  font-size: 28rpx;
-}
-.e-font30 {
-  font-size: 30rpx;
-}
-.e-font32 {
-  font-size: 32rpx;
-}
-.e-font36 {
-  font-size: 36rpx;
-}
-.e-font40 {
-  font-size: 40rpx;
-}
-.e-font42 {
-  font-size: 42rpx;
-}
-.e-font44 {
-  font-size: 44rpx;
+  font-size: 24px;
 }
 
 /* ··················· 颜色 ··················· */
@@ -219,92 +217,104 @@ img {
   background: $e-f;
 }
 
-/* ··················· 边距 ··················· */
+/* ··················· 内边距 ··················· */
 .e-pr10 {
-  padding-right: 10rpx;
+  padding-right: 10px;
 }
-.e-pd20 {
-  padding: 20rpx;
+.e-pl10 {
+  padding-left: 10px;
+}
+.e-pt10 {
+  padding-top: 10px;
+}
+.e-pb10 {
+  padding-bottom: 10px;
 }
 .e-pl20 {
-  padding-left: 20rpx;
+  padding-left: 20px;
 }
 .e-pr20 {
-  padding-right: 20rpx;
+  padding-right: 20px;
 }
 .e-pb20 {
-  padding-bottom: 20rpx;
+  padding-bottom: 20px;
 }
 .e-pt20 {
-  padding-top: 20rpx;
+  padding-top: 20px;
 }
 .e-pl30 {
-  padding-left: 30rpx;
+  padding-left: 30px;
 }
 .e-pr30 {
-  padding-right: 30rpx;
+  padding-right: 30px;
 }
 .e-pt30 {
-  padding-top: 30rpx;
+  padding-top: 30px;
 }
 .e-pb30 {
-  padding-bottom: 30rpx;
+  padding-bottom: 30px;
 }
-.e-pb108 {
-  padding-bottom: 108rpx;
-  // 适配iphoneX等全面屏机型 hack
-  // #ifdef MP-WEIXIN
-  padding-bottom: calc(constant(safe-area-inset-bottom) + 108rpx);
-  padding-bottom: calc(env(safe-area-inset-bottom) + 108rpx);
-  // #endif
+
+/* ··················· 外边距 ··················· */
+.e-mt5 {
+  margin-top: 5px;
+}
+.e-ml5 {
+  margin-left: 5px;
+}
+.e-mr5 {
+  margin-right: 5px;
+}
+.e-mb5 {
+  margin-bottom: 5px;
 }
 .e-mt10 {
-  margin-top: 10rpx;
+  margin-top: 10px;
 }
 .e-ml10 {
-  margin-left: 10rpx;
+  margin-left: 10px;
 }
 .e-mr10 {
-  margin-right: 10rpx;
-}
-.e-mb0 {
-  margin-bottom: 0 !important;
+  margin-right: 10px;
 }
 .e-mb10 {
-  margin-bottom: 10rpx;
+  margin-bottom: 10px;
+}
+.e-mt10 {
+  margin-top: 10px;
+}
+.e-ml10 {
+  margin-left: 10px;
+}
+.e-mr10 {
+  margin-right: 10px;
+}
+.e-mb10 {
+  margin-bottom: 10px;
 }
 .e-mt20 {
-  margin-top: 20rpx;
+  margin-top: 20px;
 }
 .e-ml20 {
-  margin-left: 20rpx;
+  margin-left: 20px;
 }
 .e-mr20 {
-  margin-right: 20rpx;
+  margin-right: 20px;
 }
 .e-mb20 {
-  margin-bottom: 20rpx;
-}
-.e-ml26 {
-  margin-left: 26rpx;
+  margin-bottom: 20px;
 }
 .e-mt30 {
-  margin-top: 30rpx;
+  margin-top: 30px;
 }
 .e-mb30 {
-  margin-bottom: 30rpx;
+  margin-bottom: 30px;
 }
 .e-ml30 {
-  margin-left: 30rpx;
+  margin-left: 30px;
 }
 .e-mr30 {
-  margin-right: 30rpx;
-}
-.e-mt50 {
-  margin-top: 50rpx;
-}
-.e-mb50 {
-  margin-bottom: 50rpx;
+  margin-right: 30px;
 }
 
 /* ··················· 字间距 ··················· */
@@ -315,9 +325,6 @@ img {
 /* ··················· 行距 ··················· */
 .e-lh1 {
   line-height: 1;
-}
-.e-lh_half {
-  line-height: 1.5;
 }
 .e-lh2 {
   line-height: 2;
@@ -330,16 +337,6 @@ img {
 }
 
 /* ··················· btn ··················· */
-.e-btn {
-  display: inline-block;
-  box-sizing: border-box;
-  height: 85rpx;
-  line-height: 85rpx;
-  border: 1rpx solid transparent;
-  font-size: 30rpx;
-  border-radius: 42.5rpx;
-  text-align: center;
-}
 // 黄色按钮
 .e-btnOrangeBg {
   background-color: $e-orange;
@@ -379,25 +376,25 @@ img {
 // 悬浮阴影按钮
 .white-shadow-btn {
   box-sizing: border-box;
-  width: 80rpx;
-  height: 80rpx;
-  padding: 10rpx;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
   border-radius: 50%;
   background: $e-f;
-  box-shadow: 0 0 10rpx $e-lightRed;
+  box-shadow: 0 0 5px $e-lightRed;
   text-align: center;
   color: $e-9;
-  font-size: 18rpx;
+  // font-size: 18px;
 
   .icon {
     color: $e-3;
-    font-size: 60rpx;
+    font-size: 30px;
   }
 
   &.has-text .icon {
-    font-size: 44rpx;
-    height: 38rpx;
-    margin-top: -2rpx;
+    font-size: 22px;
+    height: 19px;
+    margin-top: -1px;
   }
 
   &.no-text {
@@ -408,19 +405,14 @@ img {
 }
 
 // 按钮长度
-.e-s-Btn {
-  width: 150rpx;
-  height: 63rpx;
-  padding: 0 14rpx;
-  line-height: 63rpx;
-  font-size: 26rpx;
-  letter-spacing: -1px;
+.e-btn-s {
+  width: 75px;
 }
-.e-m-Btn {
-  width: 228rpx;
+.e-btn-m {
+  width: 120px;
 }
-.e-l-Btn {
-  width: 336rpx;
+.e-btn-l {
+  width: 200px;
 }
 
 /* ··················· 缩略 ··················· */
@@ -493,59 +485,37 @@ img {
 /* ··················· 产品相关 ··················· */
 // 价格
 .e-price {
-  font-size: 28rpx;
+  font-size: 14px;
   &.m {
-    font-size: 30rpx;
+    font-size: 15px;
   }
   &.l {
-    font-size: 36rpx;
+    font-size: 18px;
   }
   &::before {
     content: "￥";
-    font-size: 24rpx;
+    font-size: 12px;
   }
 }
 
 // 带阴影边框
 .e-box_p {
   width: auto;
-  margin: 30rpx;
-  padding: 35rpx 28rpx;
+  margin: 15px;
+  padding: 18px 14px;
   background: $e-f;
-  border-radius: 10rpx;
-  box-shadow: 0rpx 10rpx 14rpx 1rpx rgba(0, 0, 0, 0.03);
+  border-radius: 5px;
+  box-shadow: 0px 5px 7px 1px rgba(0, 0, 0, 0.03);
+
+  &.mb0 {
+    margin-bottom: 0;
+  }
 }
 .e-box_f {
   box-sizing: border-box;
   width: 100%;
-  padding: 30rpx 26rpx;
+  padding: 15px 13px;
   background: $e-f;
-}
-
-// 加减控件
-.e-number-count {
-  .count-op {
-    display: inline-block;
-    width: 60rpx;
-    height: 50rpx;
-    line-height: 1;
-    text-align: center;
-    font-size: 43rpx;
-    color: #939393;
-    background: $e-gray;
-    border-radius: 5rpx;
-    &.disable {
-      color: #ddd;
-    }
-  }
-  .count-number {
-    display: inline-block;
-    width: 80rpx;
-    height: 50rpx;
-    line-height: 50rpx;
-    text-align: center;
-    color: $e-3;
-  }
 }
 
 /* ··················· 遮罩 ··················· */
@@ -576,13 +546,13 @@ img {
 /* ··················· 定制居中弹框 ··················· */
 .p-popup {
   box-sizing: border-box;
-  width: 570rpx;
-  padding: 35rpx 40rpx;
+  width: 570px;
+  padding: 35px 40px;
   .e-btn {
-    font-size: 26rpx;
-    width: 230rpx;
-    height: 65rpx;
-    line-height: 60rpx;
+    font-size: 26px;
+    width: 230px;
+    height: 65px;
+    line-height: 60px;
     padding: 0 !important;
   }
 }
@@ -620,13 +590,10 @@ img {
 }
 // 底部按钮栏
 .e-bottom-btnGroup {
-  height: 85rpx;
+  height: 55px;
   background-color: #fff;
-  padding: 12rpx 28rpx;
-  // #ifdef MP-WEIXIN
-  padding-bottom: calc(constant(safe-area-inset-bottom) + 12rpx);
-  padding-bottom: calc(env(safe-area-inset-bottom) + 12rpx);
-  // #endif
+  padding: 8px 10px;
+  // border-top: 1px solid $e-line;
 }
 
 /* ··················· 浮动 ··················· */
@@ -643,55 +610,20 @@ img {
   overflow: hidden;
 }
 
-/* ··················· 地址列表 ··················· */
-.e-addr {
-  padding: 20rpx 30rpx;
-  background-color: $e-f;
-  line-height: 1.8;
-}
-.e-addr_left {
-  width: 20%;
-  height: 100%;
-  margin-right: 10rpx;
-}
-.e-addr_bottom {
-  width: 100%;
-  text-align: right;
-}
-
-/* ··················· 表单验证 ··················· */
-.e-form {
-  display: block;
-  font-size: 28rpx;
-  width: auto;
-  margin: 30rpx;
-  padding: 0 28rpx;
-  background: $e-f;
-  border-radius: 10rpx;
-  box-shadow: 0rpx 10rpx 14rpx 1rpx rgba(0, 0, 0, 0.03);
-
-  .e-form-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30rpx 0;
-  }
-}
-
 /* ··················· 分割线 ··················· */
 .e-gap-line {
   width: 100%;
-  height: 1rpx;
+  height: 1px;
   background: $e-line;
-  margin: 35rpx 0;
+  margin: 35px 0;
 }
 
 /* ··················· 阴影 ··················· */
 .e-shadow-default {
-  box-shadow: 0rpx 10rpx 14rpx 1rpx rgba(0, 0, 0, 0.03);
+  box-shadow: 0px 10px 14px 1px rgba(0, 0, 0, 0.03);
 }
 
 /* ··················· 圆角 ··················· */
 .e-border-radius-10 {
-  border-radius: 10rpx;
+  border-radius: 10px;
 }

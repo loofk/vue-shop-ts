@@ -9,6 +9,7 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
+        // 配置全局scss变量
         prependData: '@import "~@/style/variate.scss";'
       }
     }

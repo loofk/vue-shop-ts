@@ -1,4 +1,8 @@
-import { post } from '@/util/request/index'
+/* eslint-disable @typescript-eslint/camelcase */
+import { post } from '@/util'
+
+// 声明文件
+import * as goods from '@/types/api/goods'
 
 class Goods {
   /**
@@ -6,8 +10,26 @@ class Goods {
    * @param null
    * @returns {Promise}
    */
-  index (): Promise<any> {
-    return post('ebuy_index/getIndexInfo')
+  index () {
+    return post<goods.GetIndexInfoResponse>('ebuy_index/getIndexInfo')
+  }
+
+  /**
+   * 获取商品虚拟分类
+   * @param null
+   * @returns {Promise}
+   */
+  getCategories () {
+    return post<goods.CategoriesResponse>('ebuy_index/categories')
+  }
+
+  /**
+   * 根据分类ID获取分类下的商品数据
+   * @param cateID 分类项ID
+   * @returns {Promise}
+   */
+  getCategoryGoods (cateID: number) {
+    return post<goods.GetCategoryGoodsResponse>('ebuy_index/getCategoryGoods', { cate_id: cateID })
   }
 }
 
