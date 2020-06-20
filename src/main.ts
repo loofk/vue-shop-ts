@@ -6,7 +6,7 @@ import store from './store'
 import { to, loading, toast, Nav } from '@/util'
 
 // 适配rem
-import 'amfe-flexible'
+// import 'amfe-flexible'
 
 // 导入mint-ui框架
 import MintUI from 'mint-ui'

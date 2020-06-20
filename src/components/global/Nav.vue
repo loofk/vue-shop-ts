@@ -1,5 +1,5 @@
 <template lang="pug">
-  .navbar(:style="{ height: navHeight + 'px', backgroundColor: navColor }")
+  .navbar(:style="{backgroundColor: navColor }")
     .content.e-flex_center
       //- 左侧logo
       .logo(v-if="logo")
@@ -26,13 +26,6 @@ export default class Nav extends Vue {
     default: '#fff'
   })
   navColor?: string
-
-  // 导航高度
-  @Prop({
-    type: Number,
-    default: 45
-  })
-  navHeight?: number
 
   // 是否展示logo
   @Prop({
@@ -99,13 +92,13 @@ export default class Nav extends Vue {
   top: 0;
   left: 0;
   z-index: 100;
-  border-bottom: 1px solid $e-line;
 }
 
 .content {
   position: relative;
   padding: 0 10px;
   height: 44px;
+  border-bottom: 1px solid $e-line;
 }
 
 // 比导航内容高层级，确保按钮可点

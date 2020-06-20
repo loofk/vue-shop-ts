@@ -7,6 +7,15 @@
 </template>
 
 <script lang="ts">
+/**
+ * 骨架屏组件，思路来源于网络，大致是根据传入的选择器作为根节点，过滤不可见元素，然后从剩下的元素中找到文本等静态元素，绘制相应的颜色块
+ * 目前实现了一个自定义绘制某个节点的钩子：includeElement，在父组件定义即可，默认传入了node和drawBlock两个参数
+ * 优势是解放了原来需要人工选择骨架屏的成本，缺点是在应对多图片衔接的场景表现不好，此外应对卡片块容易绘制其内部的多个节点而体现不出块
+ * 针对卡片块可以根据项目卡片块的特征人工辨别并绘制节点
+ *
+ * 使用：导入组件，在页面中定义skeleton类用以作为根节点
+ */
+
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { getArgType } from '@/util'
 
@@ -60,7 +69,7 @@ export default class Skeleton extends Vue {
   draw () {
     // eslint-disable-next-line @typescript-eslint/camelcase
     const { isHideStyle, includeElement, getStyle, getPadding, getRect, drawBlock, wPercent, hPercent, $parent, win_w: winW, win_h: winH } = this
-    const root = document.querySelector(this.selector) as HTMLElement
+    const root = document.querySelector(this.selector) as HTMLElement || document.body
     const nodes = root.childNodes
 
     function deepFindNode (nodes: NodeList) {
@@ -70,8 +79,7 @@ export default class Skeleton extends Vue {
           // 剔除不可见元素
           const parent: Vue & { includeElement?: (node: HTMLElement, cb: (options: SkeletonDomOptions) => void) => boolean } = $parent
           if (isHideStyle(node) ||
-          // eslint-disable-next-line eqeqeq
-          (parent.includeElement && getArgType(parent.includeElement) === 'function' && parent.includeElement(node, drawBlock) == false)) continue
+          (parent.includeElement && getArgType(parent.includeElement) === 'function' && parent.includeElement(node, drawBlock) === false)) continue
 
           const childNodes = node.childNodes
           let hasChildText = false

@@ -1,22 +1,19 @@
 <template lang="pug">
-  div
+  .cart
     //- 接口调用失败
     Abnormal(v-if="errMsg" :err="errMsg" tabbar @callback="getCartInfo")
     //- 无购物车商品
     Abnormal(v-else-if="noGoods" err="购物车空空如也~" icon="ico-state cart" btnText="去逛逛" tabbar btn @callback="$nav.to('cate')")
     //- 购物车列表
-    div(v-else)
-      .e-hidden
-        .c-item(v-for="(item, index) in items" :key="index")
-          .c-item-wrapper
-            .c-item-pro
-              i.icon(:class="[item.selected ? 'icon-checked e-deepRed' : 'icon-empty-circle']" @click="handleSelectItem(item.obj_ident, item.selected)" v-if="item.can_buy")
-              button.c-invalid-btn(disabled v-else) 缺货
-              div.e-ml10
-                proTemplate(count :info="item", @count="handleItemNum")
-            p.e-txtR.e-mt10
-              span.e-deepRed.e-font12(@click="handleAddCollection(item.obj_ident)") 移入收藏夹
-              span.e-c9.e-font12.e-ml10(@click="handleDeleteItem(item.obj_ident)") 删除
+    .c-main(v-else)
+      .c-item(v-for="(item, index) in items" :key="index")
+        .e-flex_center
+          i.icon.e-font28(:class="[item.selected ? 'icon-checked e-deepRed' : 'icon-empty-circle']" @click="handleSelectItem(item.obj_ident, item.selected)" v-if="item.can_buy")
+          button.c-invalid-btn(disabled v-else) 缺货
+          proTemplate.e-flex_auto.e-ml10(count :info="item", @count="handleItemNum")
+        //- p.e-txtR.e-mt10
+        //-   span.e-deepRed.e-font12(@click="handleAddCollection(item.obj_ident)") 移入收藏夹
+        //-   span.e-c9.e-font12.e-ml10(@click="handleDeleteItem(item.obj_ident)") 删除
     //- 支付模块
     .e-fixed_bottom.e-bottom-btnGroup.e-flex_center
       //- 全选按钮
@@ -24,7 +21,7 @@
         i.icon(:class="[isSelectAll ? 'icon-checked e-deepRed' : 'icon-empty-circle']" @click="handleSelectAll")
         span.e-c9 全选
       //- 金额
-      p.e-flex_left.cart-settle-money
+      p.e-flex_left.ml10
         span 合计：
         span.e-price.l.e-deepRed {{ total }}
       //- 结算按钮
@@ -184,54 +181,30 @@ export default class Cart extends Vue {
 
 <style lang="scss" scoped>
 .e-fixed_bottom {
-  bottom: 55px;
+  bottom: calc(55px + env(safe-area-inset-bottom) );
 }
 
-.e-pb58 {
-  padding-bottom: 0;
-  height: calc(100% - 58px);
+.c-main {
+  padding-bottom: 55px;
 }
 
 .c-item {
-  margin: 15px;
+  margin: 15px 12px;
+  padding: 15px 12px;
   overflow: hidden;
   background: $e-f;
   border-radius: 5px;
   box-shadow: 0 5px 7px 1px rgba(0, 0, 0, 0.03);
 }
 
-// 每个购物车商品的容器
-.c-item-wrapper {
-  box-sizing: border-box;
-  padding: 12.5px 14px;
-}
-
-.c-item-pro {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  .icon {
-    font-size: 28px;
-  }
-}
-
 // 商品无库存时无效按钮
 .c-invalid-btn {
-  position: relative;
-  left: -5px;
-  width: 40px;
-  height: 22.5px;
+  width: 30px;
+  height: 20px;
   padding: 0;
   margin: 0;
-  line-height: 22.5px;
+  line-height: 20px;
   border: none;
-  // background: #e50112;
-  font-size: 10px;
-}
-
-.cart-settle-money {
-  width: 135px;
-  margin-left: 15px;
+  font-size: 12px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template lang="pug">
-  .cart(:style="`paddingTop: ${navHeight}px`")
+  .tabbar-page
     Nav(tabbar title="购物车")
-    cart
+    cart(:style="`paddingTop: ${navHeight}px`")
     tabbar(selected="cart")
 </template>
 
@@ -25,7 +25,4 @@ export default class Cart extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.cart {
-  padding-bottom: 55px;
-}
 </style>

@@ -1,31 +1,31 @@
 <template lang="pug">
-  .cate.scroll-page.without-tabbar(:style="`paddingTop: ${navHeight}px`")
+  .tabbar-page
     //- 导航栏
     Nav(tabbar title="分类")
     //- 接口调用失败
     Abnormal(v-if="errMsg" :err="errMsg" tabbar @callback="getCategories")
     //- 主体
-    .e-flex(v-else)
+    .c-main(v-else)
       //- 搜索栏
-      .search-wrapper.e-b-bottom
+      .c-search(:style="`top: ${navHeight}px`")
         .e-bgGray.e-flex_left.e-c9
           span.icon.icon-search.e-font20
           ul: li.e-font12 你好
       //- 左侧分类栏
-      ul#menu.scroll-view.ca-left
+      ul#menu.c-left.scroll-view(@toucmove.stop.prevent="")
         li.e-hidden(v-for="(item, index) in cateList" :key="index" @click="selectCates(index, item.id)")
-          p.ca-left-item(:class="{ on: selectCateID === item.id }")
+          p.c-left_item(:class="{ on: selectCateID === item.id }")
             span.ctx {{ item.name }}
       //- 右侧商品橱窗
-      .scroll-view.ca-right
+      .c-right.scroll-view(@toucmove.stop.prevent="")
         //- loading页
-        loading-page(v-if="loadingStatus" :status="loadingStatus" size="middle")
+        .loading-page(v-if="loadingStatus"): spinner(:type="1" color="#E50112")
         //- 无分类情况
         Abnormal(v-else-if="noCateGoods" err="该分类下暂无商品哦~" icon="ico-state cate" :nav="false" :btn="false")
         //- 分类列表
-        .ca-right-item(v-else)
+        .c-right_wrapper(v-else)
           .e-flex.e-flex_center
-            .ca-right-product(v-for="(item, index) in productInfoList" :key="index")
+            .c-right_wrapper_product(v-for="(item, index) in productInfoList" :key="index" :class="{ last: index > productInfoList.length - 3 }")
               proTemplate(direction="vertical" :brief="false" size="small" :info="item")
     //- tabbar
     tabbar(selected="cate")
@@ -36,20 +36,18 @@ import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import tabbar from '@/components/tabbar.vue'
 import proTemplate from '@/components/pro-template.vue'
-import loadingPage from '@/components/loading-page.vue'
+import spinner from '@/components/spinner/spinner.vue'
 import goodsApi from '@/api/goods'
 
 // 声明文件
 type productListOptions = {
-  gbn: string;
   brief: string;
   has_store: number;
   image: string;
-  original_name: string;
+  name: string;
   price: string;
   product_id: string;
   goods_id: string;
-  is_egou: number;
 }
 
 const userModule = namespace('user')
@@ -59,7 +57,7 @@ const appModule = namespace('app')
   components: {
     tabbar,
     proTemplate,
-    loadingPage
+    spinner
   }
 })
 export default class Cate extends Vue {
@@ -114,8 +112,8 @@ export default class Cate extends Vue {
     this.loadingStatus = 1
     goodsApi.getCategoryGoods(paramID).then(res => {
       this.errMsg = ''
-      this.productInfoList = res.data.goods
-      this.noCateGoods = res.data.goods.length <= 0
+      this.productInfoList = res.data
+      this.noCateGoods = res.data.length <= 0
 
       // 处理价格为0时显示暂无报价，后期做在全局过滤器里
       this.productInfoList.forEach(ele => {
@@ -148,24 +146,21 @@ export default class Cate extends Vue {
 </script>
 
 <style lang="scss" scoped>
-// 顶部留出1px空隙展示虚线
-.e-b-top {
-  padding: 1px;
+.c-main {
+  display: flex;
+  height: 100%;
+  padding-top: 88px;
 }
 
-.icon-upload {
-  display: inline-block;
-  &.turn-down {
-    transform: rotate(-180deg);
-  }
-}
-
-.search-wrapper {
+.c-search {
+  position: fixed;
+  left: 0;
+  z-index: 1;
   width: 100%;
-  height: 47px;
-  padding: 8px 10px;
+  height: 44px;
+  padding: 7px 10px;
   background-color: $e-f;
-
+  border-bottom: 1px solid $e-line;
   .e-bgGray {
     height: 30px;
     border-radius: 35px;
@@ -173,61 +168,67 @@ export default class Cate extends Vue {
   }
 }
 
-.ca-left {
+.c-left {
   width: 80px;
-  height: calc(100vh - 44px - 55px - 46px);
+  height: 100%;
   font-size: 12px;
   background-color: $e-gray;
-}
 
-.ca-left-item {
-  display: block;
-  width: 80px;
-  padding: 10px 0;
-  font-size: 12px;
-  text-align: center;
-
-  .ctx {
+  &_item {
     display: block;
-    height: 24px;
-    padding: 5px;
-    border-left: 3px solid transparent;
+    width: 80px;
+    padding: 10px 0;
+    text-align: center;
+
+    .ctx {
+      display: block;
+      height: 24px;
+      padding: 5px;
+      border-left: 3px solid transparent;
+    }
+    &.on {
+      color: $e-lightRed;
+      background-color: $e-f;
+    }
   }
-  &.on {
-    color: $e-lightRed;
-    background-color: $e-f;
-  }
-  // &.on .ctx {
-  //   border-left-color: $e-lightRed;
-  // }
 }
 
-.ca-right {
+.c-right {
   position: relative;
   flex: 1;
-  height: calc(100vh - 44px - 55px - 46px);
+  height: 100%;
   background-color: $e-f;
   text-align: center;
+
+  &_wrapper {
+    padding: 15px 30px;
+
+    &_product {
+      width: 105px;
+      margin-bottom: 15px;
+      &.last {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 
-.ca-right-item {
-  padding: 18.5px 32.5px;
-}
-
-.ca-right-item_no_goods {
-  width: 100%;
-  height: 100%;
+// loading页
+.loading-page {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.ca-right-product {
-  width: 105px;
-  margin-bottom: 15px;
-}
-
-.e-price {
-  font-size: 11px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 130;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background: $e-f;
+  text-align: center;
 }
 </style>

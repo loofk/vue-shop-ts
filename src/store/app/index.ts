@@ -4,7 +4,7 @@ import { RootState } from '../types'
 import { getters } from './getters'
 
 const state: AppState = {
-  navHeight: 45
+  navHeight: 44
 }
 
 const namespaced = true

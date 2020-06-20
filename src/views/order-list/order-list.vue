@@ -5,7 +5,7 @@
     ul.e-flex_center.ol-nav
       li(v-for="(item, index) in tab" :key="index" :class="{ active: chooseStatus === index }" :data-value="index" @click="handleNavChange") {{ item }}
     //- 展示列表
-    mt-loadmore.scroll-view(:top-method="getList" :bottom-method="getMore" :bottom-all-loaded="allowLoaded" ref="loadmore")
+    load-more.scroll-view(@top-method="getList")
       .e-box_p(v-for="(item, index) in orderList" :key="index" :class="{ 'mb0': index === orderList.length - 1 }")
         router-link(:to="{ name: 'order-detail', params: { id: item.order_id } }")
           .order-status.e-flex_center
@@ -32,12 +32,14 @@ import { Getter } from 'vuex-class'
 import orderConst from '@/constant/order'
 import orderApi from '@/api/order'
 import proTemplate from '@/components/pro-template.vue'
+import loadMore from '@/components/pull-refresh.vue'
 
 const namespace = 'app'
 
 @Component({
   components: {
-    proTemplate
+    proTemplate,
+    loadMore
   }
 })
 export default class OrderList extends Vue {
@@ -78,7 +80,7 @@ export default class OrderList extends Vue {
       this.errMsg = ''
       this.noList = res.data.length === 0
       this.orderList = res.data
-      ;(this.$refs.loadmore as LoadMore).onTopLoaded()
+      // this.$refs.loadmore.onTopLoaded()
     }).catch(err => {
       this.errMsg = err.msg || '订单加载失败'
       this.orderList = [] // 手动清除列表数据
@@ -97,7 +99,7 @@ export default class OrderList extends Vue {
       } else {
         this.orderList = this.orderList.concat(res.data)
       }
-      this.$refs.loadMore.onBottomLoaded()
+      // this.$refs.loadMore.onBottomLoaded()
     }
   }
 

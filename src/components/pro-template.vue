@@ -5,8 +5,8 @@
       .e-flex
         image-loader(:src="showSrc" :width="90" :height="90")
         .e-flex_auto.e-ml10.e-relative
-          p.e-font15(:class="[sku ? 'e-omit1' : 'e-omit2']") {{ showName }}
-          p.e-font12.e-c9.e-mt10.e-omit2(v-if="!sku") {{ showSkuText }}
+          p.e-omit1.e-font15 {{ showName }}
+          p.e-font12.e-c9.e-mt5.e-omit2(v-if="!sku") {{ showSkuText }}
           .sku-wrapper.e-flex_center(v-else @click.stop="$emit('sku')")
             span.sku_info(v-if="info.unselectedSku") 请选择 {{ info.unselectedSku }}
             span.sku_info(v-else) {{ showSkuText }}
@@ -20,12 +20,13 @@
     //- 垂直模式
     .e-txtC(v-else)
       image-loader(:src="showSrc" :width="verticalConfig.imageSize" :height="verticalConfig.imageSize")
-      //- img(:src="showSrc" :style="`width:${verticalConfig.imageSize}px;height:${verticalConfig.imageSize}px`")
-      p.e-omit1(:class="[size === 'small' ? 'e-mt10' : 'e-mt5']" :style="{fontSize: `${verticalConfig.nameSize}px`}") {{ showName }}
-      //- 商品简介
-      p.e-omit1.e-c9(:class="[size === 'small' ? 'e-mt10' : 'e-mt5']" :style="{ fontSize: `${verticalConfig.briefSize}px` }") {{ info.brief }}
-      p.e-price.e-mt10.e-deepRed(:style="{ fontSize: `${verticalConfig.priceSize}px` }" v-if="info.price > 0") {{ info.price }}
-      p.e-deepRed.e-mt10(:style="{ fontSize: `${verticalConfig.priceSize}px` }" v-else) 暂无报价
+      .p-info
+        p.e-omit1.e-mt5(:style="{fontSize: `${verticalConfig.nameSize}px`}") {{ showName }}
+        //- 商品简介
+        p.e-omit1.e-c9.e-mt5(:style="{ fontSize: `${verticalConfig.briefSize}px` }") {{ info.brief }}
+        .price
+          p.e-price.e-deepRed(:style="{ fontSize: `${verticalConfig.priceSize}px` }" v-if="info.price > 0") {{ info.price }}
+          p.e-deepRed(:style="{ fontSize: `${verticalConfig.priceSize}px` }" v-else) 暂无报价
 </template>
 
 <script lang="ts">
@@ -132,7 +133,7 @@ export default class ProTemplate extends Vue {
       nameSize: 12,
       briefSize: 12,
       priceSize: 14,
-      imageSize: 120
+      imageSize: 170
     }
   }
 
@@ -210,5 +211,16 @@ img {
   bottom: 0;
   left: 0;
   width: 100%;
+}
+
+.p-info {
+  padding: 0 7px;
+
+  .price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+  }
 }
 </style>

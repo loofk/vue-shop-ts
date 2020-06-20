@@ -2,6 +2,11 @@
  * 重置默认样式
  */
 
+img {
+  vertical-align: top;
+  border: none;
+}
+
 a {
   text-decoration: none;
   color: unset;

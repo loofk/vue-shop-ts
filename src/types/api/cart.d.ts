@@ -50,53 +50,47 @@ export interface DeleteItemRequest {
  * @更新时间 `2020-06-12 10:13:04`
  */
 export interface DeleteItemResponse {
-  total_price?: string
-  total_quantity?: number
-  is_selected_all?: boolean
-  selected_price?: string
-  selected_quantity?: number
-  goods?: {
-    product_id?: string
-    goods_id?: string
-    brief?: string
-    bn?: string
-    price?: string
-    spec?: string
-    is_egou?: string
-    name?: string
-    store?: number
-    can_buy?: number
-    image?: string
-    image_id?: string
-    obj_ident?: string
-    quantity?: number
-    selected?: boolean
-    is_single?: boolean
-    is_starbuy?: boolean
-    num?: number
+  total_price: string
+  total_quantity: number
+  is_selected_all: boolean
+  selected_price: string
+  selected_quantity: number
+  goods: {
+    product_id: string
+    goods_id: string
+    brief: string
+    price: string
+    spec: string
+    name: string
+    store: number
+    can_buy: boolean
+    image: string
+    obj_ident: string
+    quantity: number
+    selected: boolean
+    is_single: boolean
+    is_starbuy: boolean
+    num: number
   }[]
-  gifts?: string[]
-  rules?: string[]
-  items?: {
-    obj_ident?: string
-    quantity?: number
-    selected?: boolean
-    is_single?: boolean
-    goods_info?: {
-      product_id?: string
-      goods_id?: string
-      brief?: string
-      bn?: string
-      price?: string
-      spec?: string
-      is_egou?: string
-      name?: string
-      store?: number
-      can_buy?: number
-      image?: string
-      image_id?: string
+  gifts: string[]
+  rules: string[]
+  items: {
+    obj_ident: string
+    quantity: number
+    selected: boolean
+    is_single: boolean
+    goods_info: {
+      product_id: string
+      goods_id: string
+      brief: string
+      price: string
+      spec: string
+      name: string
+      store: number
+      can_buy: boolean
+      image: string
     }
-    is_starbuy?: boolean
+    is_starbuy: boolean
   }[]
 }
 

@@ -26,6 +26,23 @@ const generateFile = (path, data) => {
   })
 }
 
+// 防止前面路径的目录没有生成
+const mkdirs = (dir, cb) => {
+  if (fs.existsSync(dir)) cb()
+  else {
+    mkdirs(path.dirname(dir), () => {
+      fs.mkdirSync(dir)
+      cb()
+    })
+  }
+}
+
+const doExistDirCreate = dir => {
+  return new Promise((resolve) => {
+    mkdirs(dir, () => resolve(true))
+  })
+}
+
 /**
  * 生成流程
  */
@@ -41,6 +58,10 @@ process.stdin.on('data', async chunk => {
   if (fs.existsSync(componentPath)) {
     errLog(`${inputName}组件已存在，请重新输入`)
     return
+  } else {
+    const dir = path.dirname(componentPath)
+    log(`正在生成目录： ${dir}`)
+    await doExistDirCreate(dir)
   }
 
   try {

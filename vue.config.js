@@ -13,5 +13,9 @@ module.exports = {
         prependData: '@import "~@/style/variate.scss";'
       }
     }
+  },
+  // 修改启动端口，因8080被公司限制，无法本地调试
+  devServer: {
+    port: 8081
   }
 }

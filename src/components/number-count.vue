@@ -11,7 +11,7 @@
       :min="min"
       :max="max"
       @blur="handleInputConfirm"
-      @focus="handleFocus"
+      @focus.stop="handleFocus"
       @input="handleInput")
 
     //- 加
@@ -311,7 +311,7 @@ export default class NumberCount extends Vue {
 }
 
 .count-small {
-  width: 80px;
+  width: 84px;
 
   .count-descrease,
   .count-increase {
@@ -337,12 +337,11 @@ export default class NumberCount extends Vue {
 
 .count-input {
   display: inline-block;
-  width: 25px;
+  width: 30px;
   height: 20px;
-  margin: 0 5px;
   line-height: 1;
-  font-size: 12px;
   text-align: center;
+  font-size: 15px;
   color: $e-3;
   border: none;
 }

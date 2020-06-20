@@ -1,9 +1,8 @@
 <template lang="pug">
-  .tabbar
-    mt-tabbar(v-model="selectedId" :fixed="true")
-      mt-tab-item(v-for="(item, index) in tabInfo" :key="index" :id="item.page").
-        #[img( slot="icon" :src="item.img")]
-        {{ item.name }}
+  mt-tabbar(v-model="selectedId" :fixed="true")
+    mt-tab-item(v-for="(item, index) in tabInfo" :key="index" :id="item.page").
+      #[img( slot="icon" :src="item.img")]
+      {{ item.name }}
 </template>
 
 <script lang="ts">
@@ -58,5 +57,10 @@ export default class Tabbar extends Vue {
 .mint-tabbar > .mint-tab-item.is-selected {
   background-color: unset;
   color: $e-deepRed
+}
+
+// 适配X
+.mint-tabbar.is-fixed {
+  padding-bottom: env(safe-area-inset-bottom)
 }
 </style>

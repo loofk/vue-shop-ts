@@ -43,20 +43,16 @@ export interface GetCategoryGoodsRequest {
  * @请求头 `POST /ebuy_index/getCategoryGoods`
  * @更新时间 `2020-06-12 11:06:53`
  */
-export interface GetCategoryGoodsResponse {
-  goods: {
-    gbn: string
-    brief: string
-    has_store: number
-    image: string
-    original_name: string
-    price: string
-    product_id: string
-    goods_id: string
-    is_egou: number
-  }[]
-  states?: string[]
-}
+export type GetCategoryGoodsResponse = {
+  brief: string
+  has_store: number
+  image: string
+  name: string
+  price: string
+  product_id: string
+  goods_id: string
+}[]
+
 
 /**
  * 接口 [goodsIndex↗](http://127.0.0.1:3000/project/11/interface/api/179) 的 **请求类型**
@@ -108,59 +104,34 @@ export interface GetIndexInfoRequest {}
  * @更新时间 `2020-06-12 11:09:38`
  */
 export interface GetIndexInfoResponse {
-  homeBanner?: {
-    info?: {
-      image: string
-      title: string
-      url: string
-      from_time: number
-      to_time: number
-    }[]
-    isTimeLimit?: number
-  }
-  goodsSort?: {
-    info?: {
-      image: string
-      title: string
-      url: string
-      from_time: number
-      to_time: number
-      cate_id: number
-      cate_name: string
-    }[]
-    isTimeLimit?: number
-  }
-  stEntrance?: {
-    info?: {
-      image: string
-      title: string
-      url: string
-      from_time: number
-      to_time: number
-    }[]
-    isTimeLimit?: number
-  }
-  shopOneDesc?: {
-    info?: {
-      image: string
-      title: string
-      url: string
-      from_time: number
-      to_time: number
-    }[]
-    isTimeLimit?: number
-  }
+  homeBanner: {
+    image: string
+    title: string
+    url: string
+  }[]
+  goodsSort: {
+    image: string
+    title: string
+    url: string
+    cate_id: number
+    cate_name: string
+  }[]
+  stEntrance: {
+    image: string
+    title: string
+    url: string
+  }[]
+  shopOneDesc: {
+    image: string
+    title: string
+    url: string
+  }[]
   shopTwoDesc?: {
-    info?: {
-      image: string
-      title: string
-      url: string
-      from_time: number
-      to_time: number
-    }[]
-    isTimeLimit?: number
-  }
-  new?: {
+    image: string
+    title: string
+    url: string
+  }[]
+  new: {
     name: string
     image: string
     url: string
